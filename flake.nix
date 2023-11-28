@@ -212,7 +212,7 @@ description = ''A flake that creates a devShell containing the following:
 
 
 	# Color scheme
-	colorschemes.onedark.enable = true;
+	colorschemes.tokyonight.enable = true;
 
 	plugins.lightline.enable = true;
 		
