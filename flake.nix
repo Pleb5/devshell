@@ -88,6 +88,19 @@ description = ''A flake that creates a devShell containing the following:
             key = "<leader>y";
             action = "\"+y";
         }
+        
+        {
+            mode = "n";
+            key = "<leader>o";
+            action = "o<Esc>";
+        }
+        
+        {
+            mode = "n";
+            key = "<leader>O";
+            action = "O<Esc>";
+        }
+
 
         {
             mode = "n";
