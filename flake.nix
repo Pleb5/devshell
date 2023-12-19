@@ -108,9 +108,16 @@ description = ''A flake that creates a devShell containing the following:
             action = "\"_d";
         }
 
+
         {
             mode = "n";
             key = "Q";
+            action = "<nop>";
+        }
+        
+        {
+            mode = "n";
+            key = "<c-z>";
             action = "<nop>";
         }
 
@@ -226,9 +233,9 @@ description = ''A flake that creates a devShell containing the following:
 
 	# Color scheme
 	colorschemes.tokyonight.enable = true;
-
+	
 	plugins.lightline.enable = true;
-		
+
 	# File Tree plugin
 	plugins.nvim-tree = {
 		enable = true;
@@ -319,6 +326,7 @@ description = ''A flake that creates a devShell containing the following:
 			navFile = {
 				"1" = "<C-h>";
 				"2" = "<C-t>";
+				"3" = "<C-m>";
 			};
 		};
 	};
