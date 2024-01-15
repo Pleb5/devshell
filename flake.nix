@@ -142,7 +142,7 @@ description = ''A flake that creates a devShell containing the following:
         # diagnostic go to next
         {
             mode = "n";
-            key = "<C-k>";
+            key = "<C-j>";
             action = "<cmd>cnext<CR>zz";
         }
 
