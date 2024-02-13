@@ -45,7 +45,7 @@ description = ''A flake that creates a devShell containing the following:
 		softtabstop = 4;
 		expandtab = true;
 
-
+        clipboard = "unnamedplus";
 
 		incsearch = true;
 
@@ -151,6 +151,13 @@ description = ''A flake that creates a devShell containing the following:
             mode = "n";
             key = "<C-k>";
             action = "<cmd>cprev<CR>zz";
+        }
+
+        # toggle Trouble
+        { 
+            mode = "n";
+            key = "<leader>xx";
+            action = "<cmd>TroubleToggle<CR>";
         }
 
         {
@@ -457,6 +464,10 @@ description = ''A flake that creates a devShell containing the following:
 		};
 
 	};
+
+    plugins.trouble = {
+        enable = true;
+    };
 
 	/*
 	plugins.coq-nvim = {
