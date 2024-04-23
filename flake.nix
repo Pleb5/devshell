@@ -29,6 +29,10 @@ description = ''A flake that creates a devShell containing the following:
         extraConfigLua = ''
 		vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir";
 		vim.opt.undofile = true;
+	  
+	  	vim.keymap.set("n", "<leader>rn", function()
+	      		return ":IncRename " .. vim.fn.expand("<cword>")
+	  	end, { expr = true })
         '';
 
 	# Neovim basic options
@@ -189,6 +193,7 @@ description = ''A flake that creates a devShell containing the following:
             };
 		}
 
+        # NvimTreeToggle
 		{
             mode = "n";
             key = "<leader>t";
