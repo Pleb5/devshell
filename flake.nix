@@ -36,7 +36,7 @@ description = ''A flake that creates a devShell containing the following:
         '';
 
 	# Neovim basic options
-	options = {
+	opts = {
 
 		# Show line numbers
 		number = true;
@@ -365,11 +365,11 @@ description = ''A flake that creates a devShell containing the following:
 	};
 	
 	# Auto comments
-	plugins.comment-nvim = {
+	plugins.comment = {
 		enable = true;
 
-		toggler.line = "gcc";
-		toggler.block = "gbc";
+		settings.toggler.line = "gcc";
+		settings.toggler.block = "gbc";
 	};
 
 	# Language Server Protocol
@@ -443,32 +443,75 @@ description = ''A flake that creates a devShell containing the following:
 # not sure how to setup this snippet lib ---> "rafamadriz/friendly-snippets"
 	};
 
-	plugins.nvim-cmp = {
+    plugins.lspkind = {
+        enable = true;
+        mode = "symbol_text";
+        preset = "codicons";
+        symbolMap = null;
+        cmp = {
+            enable = true;
+            maxWidth = 50;
+            ellipsisChar = "...";
+            menu = null;
+            after = null;
+        };
+    };
+
+	plugins.cmp = {
 		enable = true;
+        autoEnableSources = true;
 
-		snippet.expand = "luasnip";
-		completion = {
-			keywordLength = 1;
-		};
+		#snippet.expand = "luasnip";
+		#completion = {
+		#	keywordLength = 1;
+		#};
 		# Can define more sources later. see nixvim cmp helper for full list
-		sources = 
-          [
-            { name = "nvim_lsp"; }
-            { name = "luasnip"; } #For luasnip users.
-            { name = "path"; }
-            { name = "buffer"; }
-          ]
-        ;
-        
-		# Mappings for autocompletion
-		mapping = {
-		    "<CR>" = "cmp.mapping.confirm({ select = true })";
-		    "<C-p>" = "cmp.mapping.select_prev_item(cmp_select)";
-		    "<C-n>" = "cmp.mapping.select_next_item(cmp_select)";
-		    "<C-Space>" = "cmp.mapping.complete()";
-		};
 
+        settings = {
+            # formatting = {
+            #     format = ''
+            #       require("lspkind").cmp_format({
+            #               mode="symbol",
+            #               maxwidth = 50,
+            #               ellipsis_char = "..."
+            #       })
+            #     '';
+            # };
+
+            snippet = {
+                expand = ''
+                  function(args)
+                    require("luasnip").lsp_expand(args.body)
+                  end
+                '';
+            };
+            sources = [
+                {name = "path";}
+                {name = "nvim_lsp";}
+                {
+                  name = "luasnip";
+                  option = {
+                    show_autosnippets = true;
+                  };
+                }
+                {
+                    name = "buffer";
+                    option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+                }
+                {name = "neorg";}
+            ];
+
+            # Mappings for autocompletion
+            mapping = {
+                "<CR>" = "cmp.mapping.confirm({ select = true })";
+                "<C-p>" = "cmp.mapping.select_prev_item(cmp_select)";
+                "<C-n>" = "cmp.mapping.select_next_item(cmp_select)";
+                "<C-Space>" = "cmp.mapping.complete()";
+            };
+        };
 	};
+
+
 
     plugins.trouble = {
         enable = true;
@@ -493,7 +536,7 @@ description = ''A flake that creates a devShell containing the following:
 	};
 
 	in {
-	  devShell = pkgs.mkShell { buildInputs = [ nvim pkgs.ripgrep pkgs.nodejs_20]; };
+	  devShell = pkgs.mkShell { buildInputs = [ nvim pkgs.ripgrep pkgs.nodejs_20 pkgs.nodePackages.pnpm pkgs.turbo]; };
 	});    
 
 }
