@@ -536,7 +536,7 @@ description = ''A flake that creates a devShell containing the following:
 	};
 
 	in {
-	  devShell = pkgs.mkShell { buildInputs = [ nvim pkgs.ripgrep pkgs.nodejs_20 pkgs.nodePackages.pnpm pkgs.turbo]; };
+	  devShell = pkgs.mkShell { buildInputs = [ nvim pkgs.ripgrep pkgs.nodejs_20 pkgs.nodePackages.pnpm pkgs.turbo pkgs.just]; };
 	});    
 
 }
