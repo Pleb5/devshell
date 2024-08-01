@@ -118,6 +118,12 @@ description = ''A flake that creates a devShell containing the following:
             key = "Q";
             action = "<nop>";
         }
+
+        {
+            mode = "n";
+            key = "q";
+            action = "<nop>";
+        }
         
         {
             mode = "n";
