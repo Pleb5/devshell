@@ -28,7 +28,13 @@ outputs = { nixpkgs, flake-utils, nixvim, ... }:
                     pkgs.nodePackages.pnpm 
                     pkgs.turbo 
                     pkgs.just
+                    pkgs.cargo
+                    pkgs.pkg-config
+                    pkgs.openssl
                 ];
+                shellHook = ''
+                    export PATH="$HOME/.cargo/bin:$PATH"
+                '';
             };
         }
     );    
