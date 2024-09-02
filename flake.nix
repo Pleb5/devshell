@@ -13,7 +13,7 @@ inputs = {
     nixvim.url = "github:Pleb5/neovim-flake/master";
 };
 
-outputs = { nixpkgs, flake-utils, nixvim, ... }:
+outputs = { self, nixpkgs, flake-utils, nixvim, ... }:
 
     flake-utils.lib.eachDefaultSystem (system:
         let
